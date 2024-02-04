@@ -1,4 +1,5 @@
 import { useState } from "react"
+import '../styles/General.css'
 
 function General() {
     const [showForm, setShowForm] = useState(false);
@@ -18,9 +19,18 @@ function General() {
         );
     } else return (
         <form onSubmit={handleSubmit}>
-            <input type="text" id="name" placeholder="Name"></input>
-            <input type="text" id="phone" placeholder="Phone Number"></input>
-            <input type="text" id="email" placeholder="Email"></input>
+            <div>
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" placeholder="John Smith" required></input>
+            </div>
+            <div>
+                <label for="phone">Phone</label>
+                <input type="tel" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="555-555-5555" required></input>
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="johnsmith@gmail.com" required></input>
+            </div>
             <button type="submit">Submit</button>
         </form>
     );
