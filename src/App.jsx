@@ -9,12 +9,12 @@ function App() {
 
   return (
     <>
-      <div className="formsDiv">
-        <General />
-        <Education />
-        <Work />
-        <Skills />
-      </div>
+        <div className="formsDiv">
+          <General />
+          <Education />
+          <Work />
+          <Skills />
+        </div>
     </>
   )
 }
