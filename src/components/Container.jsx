@@ -31,7 +31,7 @@ function Container() {
     }
 
     return (
-        <div>
+        <div className="container">
             <div className="formsDiv">
                 <General onUpdate={handleUpdateResumeData} />
                 <Education onUpdate={handleUpdateResumeData} />

@@ -1,8 +1,23 @@
 .resume {
     background: white;
     color: black;
+    padding: 30px;
+    width: 650px;
 }
 
 .headline {
     font-weight: bold;
+}
+
+h2 {
+    background-color: lightgray;
+    padding-left: 10px;
+}
+
+h3 {
+    margin: 5px;
+}
+
+p {
+    margin: 5px;
 }

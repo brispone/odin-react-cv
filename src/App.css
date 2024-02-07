@@ -9,3 +9,7 @@
   flex-direction: column;
   width: 340px;
 }
+
+.container {
+  display: flex;
+}
