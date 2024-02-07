@@ -1,7 +1,7 @@
 import { useState } from "react"
 import '../styles/General.css'
 
-function Work() {
+function Work({ onUpdate }) {
     const [showForm, setShowForm] = useState(false);
 
     function toggleForm() {
@@ -20,7 +20,7 @@ function Work() {
             enddate: event.target.enddate.value
         };
 
-        onUpdate({ type: "education", data: formData });
+        onUpdate({ type: "work", data: formData });
     }
 
     if(!showForm) {

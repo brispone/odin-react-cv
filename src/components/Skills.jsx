@@ -1,7 +1,7 @@
 import { useState } from "react"
 import '../styles/General.css'
 
-function Skills() {
+function Skills({ onUpdate }) {
     const [showForm, setShowForm] = useState(false);
 
     function toggleForm() {
@@ -14,7 +14,7 @@ function Skills() {
 
         const formData = event.target.skill.value;
 
-        onUpdate({ type: "skill", data: formData });
+        onUpdate({ type: "skills", data: formData });
     }
 
     if(!showForm) {

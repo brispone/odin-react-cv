@@ -1,7 +1,7 @@
 import { useState } from "react"
 import '../styles/General.css'
 
-function Education() {
+function Education({ onUpdate }) {
     const [showForm, setShowForm] = useState(false);
 
     function toggleForm() {
