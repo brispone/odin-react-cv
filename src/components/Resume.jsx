@@ -13,28 +13,23 @@ function Resume({ data }) {
             <h2>Education</h2>
                 {data.education.map((edu, index) => (
                     <div key={index}>
-                        <p>School: {edu.schoolname}</p>
+                        <p className="headline">{edu.schoolname}</p>
                         <p>Degree: {edu.degree}</p>
                         <p>Area of Study: {edu.study}</p>
-                        <p>Date: {edu.date}</p>
+                        <p>{edu.date}</p>
                     </div>
                 ))}
             <h2>Work History</h2>
                 {data.work.map((work, index) => (
                     <div key={index}>
-                        <p>Company: {work.companyname}</p>
-                        <p>Title: {work.title}</p>
-                        <p>Location: {work.location}</p>
-                        <p>Start Date: {work.startdate}</p>
-                        <p>End Date: {work.enddate}</p>
+                        <p className="headline">{work.companyname}</p>
+                        <p>{work.location}</p>
+                        <p>{work.title}</p>
+                        <p>{work.startdate} to {work.enddate}</p>
                     </div>
                 ))}
             <h2>Skills</h2>
-                {data.skills.map((skill, index) => (
-                    <div key={index}>
-                        <p>{skill}</p>
-                    </div>
-                ))}
+            <p>{data.skills.join('; ')}</p>
         </div>
     );
 }
