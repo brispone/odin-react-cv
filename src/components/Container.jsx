@@ -39,7 +39,7 @@ function Container() {
                 <Skills onUpdate={handleUpdateResumeData} />
             </div>
             <div className="resumeDiv">
-                <Resume />
+                <Resume data={resumeData} />
             </div>
         </div>
     );
