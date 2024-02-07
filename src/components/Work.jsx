@@ -11,6 +11,16 @@ function Work() {
     function handleSubmit(event) {
         event.preventDefault();
         toggleForm();
+
+        const formData = {
+            companyname: event.target.companyname.value,
+            title: event.target.title.value,
+            location: event.target.location.value,
+            startdate: event.target.startdate.value,
+            enddate: event.target.enddate.value
+        };
+
+        onUpdate({ type: "education", data: formData });
     }
 
     if(!showForm) {
@@ -21,16 +31,16 @@ function Work() {
         <form onSubmit={handleSubmit}>
             <div className="closeFormButton" onClick={toggleForm}><span>X</span></div>
             <div>
-                <label for="name">Company Name</label>
-                <input type="text" name="schoolname" id="schoolname" placeholder="Odin University" required></input>
+                <label for="companyname">Company Name</label>
+                <input type="text" name="companyname" id="companyname" placeholder="Apple" required></input>
             </div>
             <div>
-                <label for="degree">Position Title</label>
-                <input type="text" name="degree" id="degree" placeholder="PhD" required></input>
+                <label for="title">Position Title</label>
+                <input type="text" name="title" id="title" placeholder="Web Developer" required></input>
             </div>
             <div>
-                <label for="study">Location</label>
-                <input type="text" name="study" id="study" placeholder="Web Development" required></input>
+                <label for="location">Location</label>
+                <input type="text" name="location" id="location" placeholder="Cupertino, CA" required></input>
             </div>
             <div>
                 <label for="startdate">Start Date</label>

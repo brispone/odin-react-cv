@@ -1,4 +1,9 @@
-import { useState } from "react"
+import React, { useState } from "react";
+import General from './General';
+import Education from './Education';
+import Work from './Work';
+import Skills from './Skills';
+import Resume from './Resume';
 
 function Container() {
     const [resumeData, setResumeData] = useState({
@@ -9,12 +14,34 @@ function Container() {
     });
 
     function handleUpdateResumeData(newData) {
-        // This is where the newData is added to the resume data (you would want to call setResumeData for this)
+        setResumeData(prevData => {
+            switch(newData.type) {
+                case 'general':
+                    return { ...prevData, general: newData.data };
+                case 'education':
+                    return { ...prevData, education: [...prevData.education, newData.data] };
+                case 'work':
+                    return { ...prevData, work: [...prevData.work, newData.data] };
+                case 'skills':
+                    return { ...prevData, skills: [...prevData.skills, newData.data] };
+                default:
+                    return prevData;
+            }
+        });
     }
 
     return (
-        <>
-        </>
+        <div>
+            <div className="formsDiv">
+                <General onUpdate={handleUpdateResumeData} />
+                <Education onUpdate={handleUpdateResumeData} />
+                <Work onUpdate={handleUpdateResumeData} />
+                <Skills onUpdate={handleUpdateResumeData} />
+            </div>
+            <div className="resumeDiv">
+                <Resume />
+            </div>
+        </div>
     );
 }
 

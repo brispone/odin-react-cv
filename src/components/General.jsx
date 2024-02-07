@@ -1,7 +1,7 @@
 import { useState } from "react"
 import '../styles/General.css'
 
-function General() {
+function General({ onUpdate }) {
     const [showForm, setShowForm] = useState(false);
 
     function toggleForm() {
@@ -11,6 +11,14 @@ function General() {
     function handleSubmit(event) {
         event.preventDefault();
         toggleForm();
+
+        const formData = {
+            name: event.target.name.value,
+            phone: event.target.phone.value,
+            email: event.target.email.value
+        };
+
+        onUpdate({ type: "general", data: formData });
     }
 
     if(!showForm) {

@@ -7,4 +7,5 @@
 .formsDiv {
   display: flex;
   flex-direction: column;
+  width: 340px;
 }

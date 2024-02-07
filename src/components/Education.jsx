@@ -11,6 +11,15 @@ function Education() {
     function handleSubmit(event) {
         event.preventDefault();
         toggleForm();
+
+        const formData = {
+            schoolname: event.target.schoolname.value,
+            degree: event.target.degree.value,
+            study: event.target.study.value,
+            date: event.target.date.value
+        };
+
+        onUpdate({ type: "education", data: formData });
     }
 
     if(!showForm) {

@@ -11,6 +11,10 @@ function Skills() {
     function handleSubmit(event) {
         event.preventDefault();
         toggleForm();
+
+        const formData = event.target.skill.value;
+
+        onUpdate({ type: "skill", data: formData });
     }
 
     if(!showForm) {
