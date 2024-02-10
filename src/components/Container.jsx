@@ -3,6 +3,7 @@ import General from './General';
 import Education from './Education';
 import Work from './Work';
 import Skills from './Skills';
+import Clear from "./Clear";
 import Resume from './Resume';
 
 function Container() {
@@ -30,6 +31,12 @@ function Container() {
         });
     }
 
+    function clearResumeData() {
+        setResumeData(prevData => {
+            return { ...prevData, education: [], work: [], skills: [] };
+        });
+    }
+
     return (
         <div className="container">
             <div className="formsDiv">
@@ -37,6 +44,7 @@ function Container() {
                 <Education onUpdate={handleUpdateResumeData} />
                 <Work onUpdate={handleUpdateResumeData} />
                 <Skills onUpdate={handleUpdateResumeData} />
+                <Clear clearResume={clearResumeData} />
             </div>
             <div className="resumeDiv">
                 <Resume data={resumeData} />
