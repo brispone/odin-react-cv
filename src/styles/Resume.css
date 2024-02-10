@@ -9,7 +9,19 @@
     font-weight: bold;
 }
 
-h2 {
+.gen {
+    background-color: dimgray;
+    color: white;
+    text-align: center;
+    padding: 1px;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.sectionheader {
     background-color: lightgray;
     padding-left: 10px;
 }
