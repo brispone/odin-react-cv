@@ -38,6 +38,13 @@ function Container() {
         });
     }
 
+    function deleteEntry(id, type) {
+        setResumeData(prevData => ({
+            ...prevData,
+            [type]: prevData[type].filter(entry => entry.id !== id)
+        }));
+    }
+
     function clearResumeData() {
         setResumeData(prevData => {
             return { ...prevData, education: [], work: [], skills: [] };
@@ -55,7 +62,7 @@ function Container() {
                 <Clear clearResume={clearResumeData} />
             </div>
             <div className="resumeDiv">
-                <Resume data={resumeData} />
+                <Resume data={resumeData} onDelete={deleteEntry} />
             </div>
         </div>
     );
