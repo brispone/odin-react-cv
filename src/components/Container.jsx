@@ -14,15 +14,22 @@ function Container() {
         skills: []
     });
 
+    const [ eduIDCounter, setEduIDCounter ] = useState(0);
+    const [ workIDCounter, setWorkIDCounter ] = useState(0);
+
     function handleUpdateResumeData(newData) {
         setResumeData(prevData => {
             switch(newData.type) {
                 case 'general':
                     return { ...prevData, general: newData.data };
                 case 'education':
-                    return { ...prevData, education: [...prevData.education, newData.data] };
+                    const newEduID = eduIDCounter + 1;
+                    setEduIDCounter(newEduID);
+                    return { ...prevData, education: [...prevData.education, { ...newData.data, id: newEduID }] };
                 case 'work':
-                    return { ...prevData, work: [...prevData.work, newData.data] };
+                    const newWorkID = workIDCounter + 1;
+                    setWorkIDCounter(newWorkID);
+                    return { ...prevData, work: [...prevData.work, { ...newData.data, id: newWorkID }] };
                 case 'skills':
                     return { ...prevData, skills: [...prevData.skills, newData.data] };
                 default:
@@ -40,6 +47,7 @@ function Container() {
     return (
         <div className="container">
             <div className="formsDiv">
+                <h2>Create  Your Resume</h2>
                 <General onUpdate={handleUpdateResumeData} />
                 <Education onUpdate={handleUpdateResumeData} />
                 <Work onUpdate={handleUpdateResumeData} />

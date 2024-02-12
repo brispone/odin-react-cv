@@ -19,7 +19,7 @@ a {
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: slategrey;
 }
 
 body {
@@ -28,6 +28,10 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+
+  font-family: 'Inter', sans-serif;
+  color: var(--primary-color);
+  background-color: var(--background-color);
 }
 
 h1 {
@@ -45,14 +49,24 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  width: 35%;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: slategray;
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
+.danger {
+  background-color: firebrick;
+  margin-top: 50px;
+}
+.danger:hover{
+  border-color: white;
+}
+
 
 @media (prefers-color-scheme: light) {
   :root {

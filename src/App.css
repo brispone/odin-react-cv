@@ -7,9 +7,13 @@
 .formsDiv {
   display: flex;
   flex-direction: column;
-  width: 340px;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
 }
 
 .container {
   display: flex;
+  justify-content: space-between;
+  width: 70vw;
 }

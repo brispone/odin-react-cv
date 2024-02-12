@@ -33,3 +33,30 @@ h3 {
 p {
     margin: 5px;
 }
+
+
+.resume-btns {
+    display: none;
+    cursor: default;
+    color: slategray;
+}
+
+.edit-btn {
+    color: olive;
+    cursor: pointer;
+}
+.edit-btn:hover {
+    text-decoration: underline;
+}
+
+.delete-btn {
+    color: firebrick;
+    cursor: pointer;
+}
+.delete-btn:hover {
+    text-decoration: underline;
+}
+
+.info-block:hover .resume-btns {
+    display: inline-block;
+}
