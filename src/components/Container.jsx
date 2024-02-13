@@ -66,16 +66,28 @@ function Container() {
     }
 
     function deleteEntry(id, type) {
-        setResumeData(prevData => ({
-            ...prevData,
-            [type]: prevData[type].filter(entry => entry.id !== id)
-        }));
+
+        const confirmed = window.confirm("Are you sure you want to delete this entry?");
+
+        if(confirmed) {
+            setResumeData(prevData => ({
+                ...prevData,
+                [type]: prevData[type].filter(entry => entry.id !== id)
+            }));
+        }
+
     }
 
     function clearResumeData() {
-        setResumeData(prevData => {
-            return { ...prevData, education: [], work: [], skills: [] };
-        });
+
+        const confirmed = window.confirm("Are you sure you want to clear everything?");
+
+        if(confirmed) {
+            setResumeData(prevData => {
+                return { ...prevData, education: [], work: [], skills: [] };
+            });
+        }
+        
     }
 
     return (
