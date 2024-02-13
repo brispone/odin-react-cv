@@ -2,15 +2,19 @@ import { useState } from "react"
 import '../styles/General.css'
 
 function Work({ onUpdate }) {
-    const [showForm, setShowForm] = useState(false);
+    const [formVisible, setFormVisible] = useState(false);
 
-    function toggleForm() {
-        setShowForm(!showForm);
+    function showForm() {
+        setFormVisible(true);
+    }
+
+    function closeForm() {
+        setFormVisible(false);
     }
 
     function handleSubmit(event) {
         event.preventDefault();
-        toggleForm();
+        closeForm();
 
         const formData = {
             companyname: event.target.companyname.value,
@@ -23,13 +27,13 @@ function Work({ onUpdate }) {
         onUpdate({ type: "work", data: formData });
     }
 
-    if(!showForm) {
+    if(!formVisible) {
         return (
-            <button onClick={toggleForm}>Add Work</button>
+            <button onClick={showForm}>Add Work</button>
         );
     } else return (
         <form onSubmit={handleSubmit}>
-            <div className="closeFormButton" onClick={toggleForm}><span>X</span></div>
+            <div className="closeFormButton" onClick={closeForm}><span>X</span></div>
             <div>
                 <label for="companyname">Company Name</label>
                 <input type="text" name="companyname" id="companyname" placeholder="Apple" required></input>

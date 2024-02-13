@@ -1,16 +1,20 @@
 import { useState } from "react"
 import '../styles/General.css'
 
-function Education({ onUpdate }) {
-    const [showForm, setShowForm] = useState(false);
+function Education({ onUpdate, editingItem }) {
+    const [formVisible, setFormVisible] = useState(false);
 
-    function toggleForm() {
-        setShowForm(!showForm);
+    function showForm() {
+        setFormVisible(true);
+    }
+
+    function closeForm() {
+        setFormVisible(false);
     }
 
     function handleSubmit(event) {
         event.preventDefault();
-        toggleForm();
+        closeForm();
 
         const formData = {
             schoolname: event.target.schoolname.value,
@@ -22,13 +26,13 @@ function Education({ onUpdate }) {
         onUpdate({ type: "education", data: formData });
     }
 
-    if(!showForm) {
+    if(!formVisible) {
         return (
-            <button onClick={toggleForm}>Add Education</button>
+            <button onClick={showForm}>Add Education</button>
         );
     } else return (
         <form onSubmit={handleSubmit}>
-            <div className="closeFormButton" onClick={toggleForm}><span>X</span></div>
+            <div className="closeFormButton" onClick={closeForm}><span>X</span></div>
             <div>
                 <label for="name">School Name</label>
                 <input type="text" name="schoolname" id="schoolname" placeholder="Odin University" required></input>

@@ -17,6 +17,8 @@ function Container() {
     const [ eduIDCounter, setEduIDCounter ] = useState(0);
     const [ workIDCounter, setWorkIDCounter ] = useState(0);
 
+    const [ editingEntry, setEditingEntry ] = useState(null);
+
     function handleUpdateResumeData(newData) {
         setResumeData(prevData => {
             switch(newData.type) {
@@ -36,6 +38,12 @@ function Container() {
                     return prevData;
             }
         });
+    }
+
+    function editEntry(id, type) {
+        const entryToEdit = resumeData[type].find(entry => entry.id === id);
+        setEditingEntry({ ...entryToEdit, type: type });
+        console.log(editingEntry);
     }
 
     function deleteEntry(id, type) {
@@ -62,7 +70,7 @@ function Container() {
                 <Clear clearResume={clearResumeData} />
             </div>
             <div className="resumeDiv">
-                <Resume data={resumeData} onDelete={deleteEntry} />
+                <Resume data={resumeData} onDelete={deleteEntry} onEdit={editEntry} />
             </div>
         </div>
     );

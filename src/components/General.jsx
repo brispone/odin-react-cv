@@ -2,15 +2,19 @@ import { useState } from "react"
 import '../styles/General.css'
 
 function General({ onUpdate }) {
-    const [showForm, setShowForm] = useState(false);
+    const [formVisible, setFormVisible] = useState(false);
 
-    function toggleForm() {
-        setShowForm(!showForm);
+    function showForm() {
+        setFormVisible(true);
+    }
+
+    function closeForm() {
+        setFormVisible(false);
     }
 
     function handleSubmit(event) {
         event.preventDefault();
-        toggleForm();
+        closeForm();
 
         const formData = {
             name: event.target.name.value,
@@ -21,13 +25,13 @@ function General({ onUpdate }) {
         onUpdate({ type: "general", data: formData });
     }
 
-    if(!showForm) {
+    if(!formVisible) {
         return (
-            <button onClick={toggleForm}>Add General Info</button>
+            <button onClick={showForm}>Add General Info</button>
         );
     } else return (
             <form onSubmit={handleSubmit}>
-                <div className="closeFormButton" onClick={toggleForm}><span>X</span></div>
+                <div className="closeFormButton" onClick={closeForm}><span>X</span></div>
                 <div>
                     <label for="name">Name</label>
                     <input type="text" name="name" id="name" placeholder="John Smith" required></input>

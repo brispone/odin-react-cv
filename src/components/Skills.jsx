@@ -2,28 +2,32 @@ import { useState } from "react"
 import '../styles/General.css'
 
 function Skills({ onUpdate }) {
-    const [showForm, setShowForm] = useState(false);
+    const [formVisible, setFormVisible] = useState(false);
 
-    function toggleForm() {
-        setShowForm(!showForm);
+    function showForm() {
+        setFormVisible(true);
+    }
+
+    function closeForm() {
+        setFormVisible(false);
     }
 
     function handleSubmit(event) {
         event.preventDefault();
-        toggleForm();
+        closeForm();
 
         const formData = event.target.skill.value;
 
         onUpdate({ type: "skills", data: formData });
     }
 
-    if(!showForm) {
+    if(!formVisible) {
         return (
-            <button onClick={toggleForm}>Add Skill</button>
+            <button onClick={showForm}>Add Skill</button>
         );
     } else return (
             <form onSubmit={handleSubmit}>
-                <div className="closeFormButton" onClick={toggleForm}><span>X</span></div>
+                <div className="closeFormButton" onClick={closeForm}><span>X</span></div>
                 <div>
                     <label for="skill">Skill</label>
                     <input type="text" name="skill" id="skill" placeholder="Basket Weaving" required></input>
