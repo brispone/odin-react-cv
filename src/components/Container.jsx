@@ -21,17 +21,33 @@ function Container() {
 
     function handleUpdateResumeData(newData) {
         setResumeData(prevData => {
+
+            const {type, data} = newData;
+
             switch(newData.type) {
                 case 'general':
                     return { ...prevData, general: newData.data };
+
                 case 'education':
-                    const newEduID = eduIDCounter + 1;
-                    setEduIDCounter(newEduID);
-                    return { ...prevData, education: [...prevData.education, { ...newData.data, id: newEduID }] };
                 case 'work':
-                    const newWorkID = workIDCounter + 1;
-                    setWorkIDCounter(newWorkID);
-                    return { ...prevData, work: [...prevData.work, { ...newData.data, id: newWorkID }] };
+                    if(data.id) {
+                        // If the data has an ID already, update existing item
+                        return {
+                            ...prevData,
+                            [type]: prevData[type].map(item => item.id === data.id ? { ...item, ...data } : item)
+                        };
+                    } else {
+                        // Add new item with new ID
+                        const newID = type === 'education' ? eduIDCounter + 1 : workIDCounter +1;
+                        // Update ID counter
+                        type === 'education' ? setEduIDCounter(newID) : setWorkIDCounter(newID);
+
+                        return {
+                            ...prevData,
+                            [type]: [...prevData[type], { ...data, id: newID }]
+                        };
+                    }
+                
                 case 'skills':
                     return { ...prevData, skills: [...prevData.skills, newData.data] };
                 default:
@@ -43,7 +59,10 @@ function Container() {
     function editEntry(id, type) {
         const entryToEdit = resumeData[type].find(entry => entry.id === id);
         setEditingEntry({ ...entryToEdit, type: type });
-        console.log(editingEntry);
+    }
+
+    function resetEditingEntry() {
+        setEditingEntry(null);
     }
 
     function deleteEntry(id, type) {
@@ -64,8 +83,8 @@ function Container() {
             <div className="formsDiv">
                 <h2>Create  Your Resume</h2>
                 <General onUpdate={handleUpdateResumeData} />
-                <Education onUpdate={handleUpdateResumeData} />
-                <Work onUpdate={handleUpdateResumeData} />
+                <Education onUpdate={handleUpdateResumeData} editingEntry={editingEntry && editingEntry.type === 'education' ? editingEntry : null} resetEditingEntry={resetEditingEntry} />
+                <Work onUpdate={handleUpdateResumeData} editingEntry={editingEntry && editingEntry.type === 'work' ? editingEntry : null}  resetEditingEntry={resetEditingEntry} />
                 <Skills onUpdate={handleUpdateResumeData} />
                 <Clear clearResume={clearResumeData} />
             </div>
