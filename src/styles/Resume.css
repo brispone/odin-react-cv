@@ -3,6 +3,8 @@
     color: black;
     padding: 30px;
     width: 650px;
+    position: relative;
+    top: 10%;
 }
 
 .headline {
@@ -36,7 +38,9 @@ p {
 
 
 .resume-btns {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 0.3s, opacity 0.2s linear;
     cursor: default;
     color: slategray;
 }
@@ -58,18 +62,26 @@ p {
 }
 
 .info-block:hover .resume-btns {
+    visibility: visible;
     display: inline-block;
+    opacity: 1;
+    transition-delay: 0s;
 }
 
 .skills-helper {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 0.3s, opacity 0.2s linear;
     cursor: default;
     color: slategray;
     font-weight: bold;
 }
 
 .skills-block:hover .skills-helper {
+    visibility: visible;
     display: inline-block;
+    opacity: 1;
+    transition-delay: 0s;
 }
 
 .skill-entry {
