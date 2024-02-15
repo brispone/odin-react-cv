@@ -38,7 +38,7 @@ function Resume({ data, onDelete, onEdit, deleteSkill }) {
                         {skill.skill}{index !== data.skills.length - 1 ? '; ' : ' '}
                     </span>
                 ))}
-                <span className="skills-helper">// click a skill to remove it</span>
+                {data.skills.length > 0 && <span className="skills-helper">// click a skill to remove it</span>}
             </p>
         </div>
     );
