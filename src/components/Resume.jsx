@@ -1,7 +1,7 @@
 import { useState } from "react"
 import '../styles/Resume.css'
 
-function Resume({ data, onDelete, onEdit }) {
+function Resume({ data, onDelete, onEdit, deleteSkill }) {
     
 
     return (
@@ -16,7 +16,7 @@ function Resume({ data, onDelete, onEdit }) {
             <h2 className="sectionheader">Education</h2>
                 {data.education.map((edu, index) => (
                     <div className="info-block" key={edu.id}>
-                        <h3 className="headline">{edu.schoolname} <span className="resume-btns">- <span className="edit-btn" onClick={()=> onEdit(edu.id, 'education')}>EDIT</span> // <span className="delete-btn" onClick={()=> onDelete(edu.id, 'education')}>REMOVE</span></span></h3>
+                        <h3 className="headline">{edu.schoolname} <span className="resume-btns">// <span className="edit-btn" onClick={()=> onEdit(edu.id, 'education')}>EDIT</span> - <span className="delete-btn" onClick={()=> onDelete(edu.id, 'education')}>REMOVE</span></span></h3>
                         <p>Degree: {edu.degree}</p>
                         <p>Area of Study: {edu.study}</p>
                         <p>{edu.date}</p>
@@ -25,14 +25,21 @@ function Resume({ data, onDelete, onEdit }) {
             <h2 className="sectionheader">Work History</h2>
                 {data.work.map((work, index) => (
                     <div className="info-block" key={work.id}>
-                        <h3 className="headline">{work.companyname} <span className="resume-btns">- <span className="edit-btn" onClick={()=> onEdit(work.id, 'work')}>EDIT</span> // <span className="delete-btn" onClick={()=> onDelete(work.id, 'work')}>REMOVE</span></span></h3>
+                        <h3 className="headline">{work.companyname} <span className="resume-btns">// <span className="edit-btn" onClick={()=> onEdit(work.id, 'work')}>EDIT</span> - <span className="delete-btn" onClick={()=> onDelete(work.id, 'work')}>REMOVE</span></span></h3>
                         <p>{work.location}</p>
                         <p>{work.title}</p>
                         <p>{work.startdate} to {work.enddate}</p>
                     </div>
                 ))}
             <h2 className="sectionheader">Skills</h2>
-            <p>{data.skills.join('; ')}</p>
+            <p className="skills-block">
+                {data.skills.map((skill, index) => (
+                    <span className="skill-entry" key={skill.id} onClick={()=> deleteSkill(skill.id)}>
+                        {skill.skill}{index !== data.skills.length - 1 ? '; ' : ' '}
+                    </span>
+                ))}
+                <span className="skills-helper">// click a skill to remove it</span>
+            </p>
         </div>
     );
 }

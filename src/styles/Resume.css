@@ -60,3 +60,18 @@ p {
 .info-block:hover .resume-btns {
     display: inline-block;
 }
+
+.skills-helper {
+    display: none;
+    cursor: default;
+    color: slategray;
+    font-weight: bold;
+}
+
+.skills-block:hover .skills-helper {
+    display: inline-block;
+}
+
+.skill-entry {
+    cursor: pointer;
+}

@@ -16,6 +16,7 @@ function Container() {
 
     const [ eduIDCounter, setEduIDCounter ] = useState(0);
     const [ workIDCounter, setWorkIDCounter ] = useState(0);
+    const [ skillIDCounter, setSkillIDCounter ] = useState(0);
 
     const [ editingEntry, setEditingEntry ] = useState(null);
 
@@ -49,7 +50,9 @@ function Container() {
                     }
                 
                 case 'skills':
-                    return { ...prevData, skills: [...prevData.skills, newData.data] };
+                    const newSkillID = skillIDCounter + 1;
+                    setSkillIDCounter(newSkillID);
+                    return { ...prevData, skills: [...prevData.skills, { skill: newData.data, id: newSkillID }] };
                 default:
                     return prevData;
             }
@@ -78,6 +81,13 @@ function Container() {
 
     }
 
+    function deleteSkill(id) {
+        setResumeData(prevData => ({
+            ...prevData,
+            skills: prevData.skills.filter(skill => skill.id !== id)
+        }));
+    }
+
     function clearResumeData() {
 
         const confirmed = window.confirm("Are you sure you want to clear everything?");
@@ -101,7 +111,7 @@ function Container() {
                 <Clear clearResume={clearResumeData} />
             </div>
             <div className="resumeDiv">
-                <Resume data={resumeData} onDelete={deleteEntry} onEdit={editEntry} />
+                <Resume data={resumeData} onDelete={deleteEntry} onEdit={editEntry} deleteSkill={deleteSkill} />
             </div>
         </div>
     );
